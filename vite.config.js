@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
+import { NodePackageImporter } from 'sass';
 
 export default defineConfig({
     plugins: [
@@ -8,4 +9,12 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    css: {
+        preprocessorOptions: {
+          scss: {
+            api: "modern-compiler",
+            importers: [new NodePackageImporter()],
+          },
+        },
+      },
 });

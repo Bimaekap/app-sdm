@@ -11,7 +11,7 @@ class SuperadminController extends Controller
      */
     public function index()
     {
-        return view('superadmin.layouts.app');
+        return view('superadmin.contents.dashboard');
     }
 
     /**
