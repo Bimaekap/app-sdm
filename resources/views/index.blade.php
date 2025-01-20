@@ -12,6 +12,8 @@
    <link rel="stylesheet" href="{assets/css/styles.css}">
    @vite('resources/css/styles.css')
    @vite('resources/scss/styles.scss')
+
+
    <title>SDM</title>
 </head>
 
@@ -48,22 +50,52 @@
                @method('POST')
                <div class="login__content grid">
                   <div class="login__box">
-                     <input type="email" name="email" id="email" required placeholder=" " class="login__input">
+                     <input type="email" name="email" value="bimaeka2000@gmail.com" id="email" required placeholder=" "
+                        class="login__input">
                      <label for="email" class="login__label">Email</label>
 
                      <i class="ri-mail-fill login__icon"></i>
                   </div>
 
                   <div class="login__box">
-                     <input type="password" name="password" id="password" required placeholder=" " class="login__input">
+                     <input type="password" name="password" value="password" id="password" required placeholder=" "
+                        class="login__input">
                      <label for="password" class="login__label">Password</label>
 
                      <i class="ri-eye-off-fill login__icon login__password" id="loginPassword"></i>
                   </div>
                </div>
-
+               @if(Session::has('login'))
+               {{-- <span class="alert alert-info text-red-50">{{ Session::get('login') }}</span> --}}
+               <div x-data="{ alertIsVisible: true }" x-show="alertIsVisible"
+                  class="relative w-full overflow-hidden rounded-md border border-red-500 bg-white text-neutral-600 dark:bg-neutral-950 dark:text-neutral-300"
+                  role="alert" x-transition:leave="transition ease-in duration-300"
+                  x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90">
+                  <div class="flex w-full items-center gap-2 bg-red-500/10 p-4">
+                     <div class="bg-red-500/15 text-red-500 rounded-full p-1" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-6"
+                           aria-hidden="true">
+                           <path fill-rule="evenodd"
+                              d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16ZM8.28 7.22a.75.75 0 0 0-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 1 0 1.06 1.06L10 11.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L11.06 10l1.72-1.72a.75.75 0 0 0-1.06-1.06L10 8.94 8.28 7.22Z"
+                              clip-rule="evenodd" />
+                        </svg>
+                     </div>
+                     <div class="ml-2">
+                        <h3 class="text-sm font-semibold text-red-500">Invalid Email Address</h3>
+                        <p class="text-xs font-medium sm:text-sm">{{ Session::get('login') }}
+                        </p>
+                     </div>
+                     <button type="button" @click="alertIsVisible = false" class="ml-auto" aria-label="dismiss alert">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"
+                           stroke="currentColor" fill="none" stroke-width="2.5" class="w-4 h-4 shrink-0">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                     </button>
+                  </div>
+               </div>
+               @endif
                {{-- #TODO: Perbaiki link forget password jika dibutuhkan --}}
-               <a href="#" class="login__forgot">Forgot your password?</a>
+               <a href=" #" class="login__forgot">Forgot your password?</a>
 
                <button type="submit" class="login__button">Login</button>
             </form>
@@ -144,6 +176,7 @@
 
    <!--=============== MAIN JS ===============-->
    @vite('resources/css/main.js')
+
 </body>
 
 </html>
