@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite('resources/js/datatables.js')
+
     @vite('resources/css/app.css')
+    @vite('resources/css/datatables.css')
     @vite('resources/js/app.js')
 
     <title>Dashboard - @yield('title')</title>
 </head>
 
 <body>
-
     @section('sidebar')
     <div x-data="{ showSidebar: false }" class="relative flex w-full flex-col md:flex-row">
         <!-- This allows screen readers to skip the sidebar and go directly to the main content. -->
@@ -322,5 +324,6 @@
     </div>
     @show
 </body>
+
 
 </html>

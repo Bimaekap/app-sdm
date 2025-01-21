@@ -17,10 +17,12 @@ Route::get('/',  function () {
 Route::post('post.login', [LoginController::class, 'login'])->name('post.login');
 
 Route::middleware('auth')->group(function () {
-
     Route::group(['middleware' => 'superadmin', 'prefix' => 'superadmin'], function () {
         Route::get('/dashboard', [DashboardController::class, 'dashboardSuperAdmin'])->name('dashboard.superadmin');
         Route::get('/users-management', [UserManagementController::class, 'pageuser'])->name('page.user');
+
+        // * Users Management
+        Route::post('create-user', [UserManagementController::class, 'create'])->name('create.user');
     });
 
     Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
